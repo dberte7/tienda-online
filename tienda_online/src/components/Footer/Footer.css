@@ -1,7 +1,4 @@
-/*
- * Footer css File
-*/
 
 .Footer {
-    /* propertys here */
+    display: flex;
 }

@@ -18,7 +18,9 @@ class Header extends Component {
 
   render() {
     return (
-      <div></div>
+      <div>
+        <h1>Online Shop</h1>
+      </div>
     );
   }
 }

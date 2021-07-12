@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Products from '../Products';
 import './Main.css';
 
 class Main extends Component {
@@ -18,7 +19,9 @@ class Main extends Component {
 
   render() {
     return (
-      <div></div>
+      <div>
+        <Products/>
+      </div>
     );
   }
 }

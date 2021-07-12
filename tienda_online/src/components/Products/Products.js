@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import Card from './Card';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import './Products.css';
 
 class Products extends Component {
@@ -18,7 +22,11 @@ class Products extends Component {
 
   render() {
     return (
-      <div></div>
+      <Grid xs={16} >
+        <TextField label="Buscar"/>
+        <Box m={4} />
+        <Card/>
+      </Grid>
     );
   }
 }
