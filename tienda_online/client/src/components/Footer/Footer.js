@@ -10,8 +10,8 @@ const Footer = () => {
       <Grid item xs={12}>
       <Box m={8} />
         <ButtonGroup aria-label="outlined primary button group">
-          <Button>Anterior</Button>
-          <Button>Siguiente</Button>
+          <Button variant="contained">Anterior</Button>
+          <Button variant="contained">Siguiente</Button>
         </ButtonGroup>
       </Grid>
     </div>
