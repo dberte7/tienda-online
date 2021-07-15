@@ -9,7 +9,6 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
@@ -35,18 +34,15 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
-  avatar: {
-    backgroundColor: red[500],
-  },
 }));
 
-export default function ProductCard(props) {
+const ProductCard = (props) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = async () => {
     setExpanded(!expanded);
-    await axios.get('http://localhost:3001/api')
+    await axios.get('http://localhost:3001/api');
   };
 
   return (
@@ -58,7 +54,7 @@ export default function ProductCard(props) {
         <CardMedia
           className={classes.media}
           image={props.product.url}
-          title="Paella dish"
+          title={props.product.name}
         />
         <CardContent>
           <Typography variant="body1" color="textPrimary" component="p">
@@ -98,3 +94,5 @@ export default function ProductCard(props) {
     </Grid>
   );
 }
+
+export default ProductCard;
