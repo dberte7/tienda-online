@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ProductList from '../Productlist';
+import ProductList from '../ProductList';
 import Buttons from '../Buttons'
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
@@ -26,7 +26,6 @@ const Products = () => {
 
   const keyPress = async (e) => {
     if(e.keyCode === 13) {
-      console.log("13333333333")
       let res = await axios.get(`http://localhost:3001/api/${input}`)
       setProduct(res.data.slice(0, 10));
       console.log(res.data);
@@ -47,10 +46,10 @@ const Products = () => {
       <ThemeProvider theme={theme}>
         <TextField label="Buscar" variant="outlined" onChange={handleChange} onKeyDown={keyPress} value={input}/>
       </ThemeProvider>
-      <Box m={4} />
-      <Buttons/>
-      <Box m={4} />
-      <ProductList product={product}/>
+      <Box m={4}/>
+      <Buttons product={product}/>
+      <Box m={4}/>
+      <ProductList product={product} onLoad={fetchProducts}/>
     </Grid>
   );
 }

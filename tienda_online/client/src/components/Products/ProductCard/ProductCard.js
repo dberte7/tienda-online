@@ -11,6 +11,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,48 +44,58 @@ export default function ProductCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpandClick = () => {
+  const handleExpandClick = async () => {
     setExpanded(!expanded);
+    let res = await axios.get('http://localhost:3001/api')
+    // setExpanded(res.data)
   };
 
   return (
-    <Card className={classes.root}>
-      <CardHeader
-        title={props.product.name}
-      />
-      <CardMedia
-        className={classes.media}
-        image={props.product.url}
-        title="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body1" color="textSecondary" component="p">
-          Precio: {props.product.price}€
-        </Typography>
-        <Typography variant="body1" color="textSecondary" component="p">
-          Rating: {props.product.relevance}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+    <Grid item xs={12} >
+      <Card className={classes.root}>
+        <CardHeader
+          title={props.product.name}
+        />
+        <CardMedia
+          className={classes.media}
+          image={props.product.url}
+          title="Paella dish"
+        />
         <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            {/* {props.product.manufacter} */}
+          <Typography variant="body1" color="textPrimary" component="p">
+            Precio: {props.product.price}€
+          </Typography>
+          <Typography variant="body1" color="textPrimary" component="p">
+            Rating: {props.product.relevance}
           </Typography>
         </CardContent>
-      </Collapse>
-    </Card>
+        <CardActions disableSpacing>
+          <IconButton
+            className={clsx(classes.expand, {
+              [classes.expandOpen]: expanded,
+            })}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography paragraph>
+              Fabricante: {props.product.manufacter}
+            </Typography>
+            <Typography paragraph>
+              CIF: {props.product.cif}
+            </Typography>
+            <Typography paragraph>
+              Dirección: {props.product.address}
+            </Typography>
+          </CardContent>
+        </Collapse>
+      </Card>
+      <Box m={4}/>
+    </Grid>
   );
 }

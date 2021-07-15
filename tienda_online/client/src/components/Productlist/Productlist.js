@@ -1,8 +1,8 @@
 import React from 'react';
 import ProductCard from '../Products/ProductCard'
-import './Productlist.css';
+import './ProductList.css';
 
-const Productlist = (props) => {
+const ProductList = (props) => {
 
   const renderProduct = () => props.product.map((product, key) => <ProductCard product={product} key={key} />)
 
@@ -13,4 +13,4 @@ const Productlist = (props) => {
   );
 }
 
-export default Productlist;
+export default ProductList;

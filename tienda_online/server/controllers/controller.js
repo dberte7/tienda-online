@@ -12,6 +12,7 @@ const routes = {
     }, 
     getProduct: async (req,res) => {
         let name = req.params.name
+        
         let data = await Product.find({
             $or:[
                 {'name':name},

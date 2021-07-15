@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 // import { teal } from '@material-ui/core/colors'
 
-const Buttons = () => {
+const Buttons = (props) => {
 
   const theme = createTheme({
     palette: {
@@ -14,6 +14,7 @@ const Buttons = () => {
       },
     }
   });
+
 
   return (
     <Grid item xs={12}>
