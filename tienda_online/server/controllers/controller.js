@@ -9,6 +9,17 @@ const routes = {
         } catch(err){
             console.log(err)
         }
+    }, 
+    getProduct: async (req,res) => {
+        let name = req.params.name
+        let data = await Product.find({
+            $or:[
+                {'name':name},
+                {'manufacter':name}
+            ]
+            })
+            console.log(data)
+        res.status(200).json(data)
     }
 }
 

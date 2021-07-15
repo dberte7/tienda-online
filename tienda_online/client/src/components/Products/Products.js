@@ -1,10 +1,11 @@
-import React from 'react';
-import Card from './Card';
+import React, { useState, useEffect } from 'react';
+import ProductList from '../Productlist';
 import Buttons from '../Buttons'
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles'
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import axios from 'axios';
 import './Products.css';
 
 const Products = () => {
@@ -16,17 +17,42 @@ const Products = () => {
     },
   })
 
+  const [input, setInput] = useState('');
+  const [product, setProduct] = useState([]);
+
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  };
+
+  const keyPress = async (e) => {
+    if(e.keyCode === 13) {
+      console.log("13333333333")
+      let res = await axios.get(`http://localhost:3001/api/${input}`)
+      setProduct(res.data.slice(0, 10));
+      console.log(res.data);
+    }
+  }
+
+  const fetchProducts = async (e) => {
+    let res = await axios.get('http://localhost:3001/api')
+    setProduct(res.data);
+  }
+
+  useEffect(() => {
+    setInput('')
+  }, [product])
+
   return (
-    <Grid xs={16} >
+    <Grid item xs={12} >
       <ThemeProvider theme={theme}>
-        <TextField label="Buscar" variant="outlined" />
+        <TextField label="Buscar" variant="outlined" onChange={handleChange} onKeyDown={keyPress} value={input}/>
       </ThemeProvider>
       <Box m={4} />
       <Buttons/>
       <Box m={4} />
-      <Card/>
+      <ProductList product={product}/>
     </Grid>
   );
-  }
+}
 
 export default Products;

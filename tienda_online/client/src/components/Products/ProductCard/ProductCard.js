@@ -17,8 +17,10 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 345,
   },
   media: {
-    height: 0,
+    // height: 0,
     paddingTop: '56.25%', // 16:9
+    width: '340px',
+    height: '200px'
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -35,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard() {
+export default function ProductCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -46,17 +48,19 @@ export default function RecipeReviewCard() {
   return (
     <Card className={classes.root}>
       <CardHeader
-        title="Shrimp and Chorizo Paella"
+        title={props.product.name}
       />
       <CardMedia
         className={classes.media}
-        image="/static/images/cards/paella.jpg"
+        image={props.product.url}
         title="Paella dish"
       />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook together with your
-          guests. Add 1 cup of frozen peas along with the mussels, if you like.
+        <Typography variant="body1" color="textSecondary" component="p">
+          Precio: {props.product.price}€
+        </Typography>
+        <Typography variant="body1" color="textSecondary" component="p">
+          Rating: {props.product.relevance}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -75,8 +79,7 @@ export default function RecipeReviewCard() {
         <CardContent>
           <Typography paragraph>Method:</Typography>
           <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-            minutes.
+            {/* {props.product.manufacter} */}
           </Typography>
         </CardContent>
       </Collapse>
