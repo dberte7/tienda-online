@@ -19,7 +19,7 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <h1>Online Shop</h1>
+        <h1>Fake Mercadona</h1>
       </div>
     );
   }

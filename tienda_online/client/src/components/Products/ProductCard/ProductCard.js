@@ -11,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
@@ -20,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 345,
   },
   media: {
-    // height: 0,
     paddingTop: '56.25%', // 16:9
     width: '340px',
     height: '200px'
@@ -46,8 +46,7 @@ export default function ProductCard(props) {
 
   const handleExpandClick = async () => {
     setExpanded(!expanded);
-    let res = await axios.get('http://localhost:3001/api')
-    // setExpanded(res.data)
+    await axios.get('http://localhost:3001/api')
   };
 
   return (
@@ -66,7 +65,7 @@ export default function ProductCard(props) {
             Precio: {props.product.price}€
           </Typography>
           <Typography variant="body1" color="textPrimary" component="p">
-            Rating: {props.product.relevance}
+            <Rating name="half-rating-read" defaultValue={props.product.relevance} precision={0.5} readOnly />
           </Typography>
         </CardContent>
         <CardActions disableSpacing>

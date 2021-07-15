@@ -12,11 +12,11 @@ const routes = {
     }, 
     getProduct: async (req,res) => {
         let name = req.params.name
-        
+        let regex = new RegExp(name, 'i')
         let data = await Product.find({
             $or:[
-                {'name':name},
-                {'manufacter':name}
+                {'name': {$regex: regex}},
+                {'manufacter': {$regex: regex}}
             ]
             })
             console.log(data)
