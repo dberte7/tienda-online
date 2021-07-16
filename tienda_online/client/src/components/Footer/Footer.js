@@ -1,21 +1,31 @@
-import React from 'react'
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup'
-import Box from '@material-ui/core/Box';
+import React from 'react';
+import { createTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
+import Pagination from '@material-ui/lab/Pagination';
 
-const Footer = () => {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
+
+export default function Footer() {
+  const classes = useStyles();
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#f9fbe7',
+      },
+    },
+  })
+
   return (
-    <div className="Footer">
-      <Grid item xs={12}>
-      <Box m={8} />
-        <ButtonGroup aria-label="outlined primary button group">
-          <Button variant="contained">Anterior</Button>
-          <Button variant="contained">Siguiente</Button>
-        </ButtonGroup>
-      </Grid>
+    <div className={classes.root}>
+      <ThemeProvider theme={theme}>
+        <Pagination count={5} color='primary'/>
+      </ThemeProvider>
     </div>
-  )
+  );
 }
-
-export default Footer
